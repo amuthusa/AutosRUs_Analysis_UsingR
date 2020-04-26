@@ -72,3 +72,67 @@ specification? Why or why not?
 100 pounds per inch, while Lot1 nd Lot2 meets the design specification since the variance is 0.98 and 7.47
 pounds per inch.
 
+Suspension Coil T-Test
+
+Based One Sample t-test collected sample data which meets following criteria
+
+1. Sample size was large enough in our case we selected the sample data size as 100
+2. Variance of the input data is similar (checked the sample data for multiple of them to make 
+   sure variance difference is smaller)
+3. Plotted input data to check if the data is normally distributed (adjusted skew)
+4. Input data is number and continuous
+5. Used random sample
+
+Using Student t-test or One Sample t-test the p-value is more than confidence 0.05
+so nullifying the Null hypothesis which states suspension coil’s pound-per-inch results are not 
+statistically different from the mean population results of 1,500 pounds per inch. So suspension coil'
+PSI is statistically different from the mean population.
+
+sample data1:
+
+data:  log10(sample_data$PSI)
+t = 0.29989, df = 99, p-value = 0.7649
+alternative hypothesis: true mean is not equal to 3.175732
+95 percent confidence interval:
+ 3.175356 3.176242
+sample estimates:
+mean of x 
+ 3.175799 
+
+
+sample_data2:
+
+data:  log10(sample_data1$PSI)
+t = 0.072607, df = 99, p-value = 0.9423
+alternative hypothesis: true mean is not equal to 3.175732
+95 percent confidence interval:
+ 3.175239 3.176263
+sample estimates:
+mean of x 
+ 3.175751 
+
+Using Two Sample t-test ( Welch's Two Sample t-test) with the same sample data, results holds true where suspension coil's PSI is
+statistically different from the men population
+
+data:  log10(sample_data$PSI) and log10(sample_data1$PSI)
+t = 0.14136, df = 194.01, p-value = 0.8877
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -0.0006248812  0.0007213732
+sample estimates:
+mean of x mean of y 
+ 3.175799  3.175751 
+
+Design your own Study:
+
+Inorder to figure out MechaCar outperforms the competitors following would be the following metric,
+I would collected
+
+1. How many number of MechaCar's sold compared to the competitors
+    a. classify them based on cost
+    b. classify them based on fuel efficiency
+    c. classify them based on maintenance cost
+    b. classify them based on class (economy, compact, standard, luxury)
+2. How many of costumers hold more than one MechaCar (to figure out happy customers who would become 
+   brand ambasadar or marketing mouth)
+

@@ -63,12 +63,25 @@ plt + geom_point(size=4) + labs(x="Manufacturing Lot", y="Variance PSI")
 plt <- ggplot(suspension_coil, aes(x=PSI))
 plt + geom_density()
 
-sample_data <- suspension_coil %>% sample_n(25)
+sample_data <- suspension_coil %>% sample_n(100)
 head(sample_data)
 
 plt <- ggplot(sample_data, aes(x=log10(PSI)))
 plt + geom_density()
 
+psi_summary <- sample_data %>% group_by(Manufacturing_Lot) %>% summarise(Variance_PSI = var(PSI))
+psi_summary
+
+sample_data1 <- suspension_coil %>% sample_n(100)
+head(sample_data1)
+
+psi_summary1 <- sample_data1 %>% group_by(Manufacturing_Lot) %>% summarise(Variance_PSI = var(PSI))
+psi_summary1
+
+plt <- ggplot(sample_data1, aes(x=log10(PSI)))
+plt + geom_density()
+
+t.test(log10(sample_data1$PSI),mu=mean(log10(suspension_coil$PSI))) #compare sample versus population means
 
 
 
