@@ -1,0 +1,54 @@
+1.Which variables/coefficients provided a non-random amount of variance to the mpg values in the dataset?
+
+[Answer]: Vehicle Length and Ground Clearance variables are statistically unlikely to provide non-random 
+amount of variance, so they have strong impact on mileage or miles per gallon. Look at the below correlation
+matric data
+
+                 vehicle length vehicle weight ground clearance         AWD         mpg
+vehicle length       1.00000000    -0.12271790      -0.31663112  0.08565668  0.60947984
+vehicle weight      -0.12271790     1.00000000       0.08511338 -0.03698098  0.09068314
+ground clearance    -0.31663112     0.08511338       1.00000000 -0.15214456  0.32874886
+AWD                  0.08565668    -0.03698098      -0.15214456  1.00000000 -0.14166977
+mpg                  0.60947984     0.09068314       0.32874886 -0.14166977  1.00000000
+
+r < 0.3 has no relevance, so AWD and Vehicle Weight are eliminated since they have 0.09 and -0.14
+0.3 <= r < 0.5 has weak relationship, so ground clearance has relevance but its weak
+05 <= r < 0.7 has moderate relationship, so vehicle length has moderate relevance
+r <= 0.7 has strong relationship, there is non based on dataset
+
+
+2.Is the slope of the linear model considered to be zero? Why or why not?
+
+[Answer]: Please find the multiple linear regression using independent variables
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)        -9.728e+01  1.448e+01  -6.717 2.68e-08 ***
+`vehicle length`    6.233e+00  6.550e-01   9.516 2.40e-12 ***
+`vehicle weight`    1.169e-03  6.857e-04   1.706    0.095 .  
+`ground clearance`  3.419e+00  5.276e-01   6.481 6.03e-08 ***
+AWD                -3.749e+00  2.515e+00  -1.490    0.143    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Where Vehicle Length and Ground Clearance seems to have slope value as 0, which mean as Vehicle Length
+increases the mpg increases in positive relation same with ground clearance. By plotting we could see 
+the line is positive increase for both the independent variables
+
+
+3.Does this linear model predict mpg of MechaCar prototypes effectively? Why or why not?
+
+[Answer]: By doing multiple model and using backward elimination, I feel both Vehicle Length and Ground
+Clearance as independent variable which could be used to predict mpg. Look at the below model
+
+multi_model4 <- lm(mpg ~ `vehicle length` + `ground clearance`, mechacar_mpg)
+summary(multi_model4)
+
+Residual standard error: 8.781 on 45 degrees of freedom
+Multiple R-squared:  0.708,	Adjusted R-squared:  0.682 
+F-statistic: 27.27 on 4 and 45 DF,  p-value: 1.586e-11
+
+Though Multiple R-squared which is 0.708 which would be a good indicator of future prediction based on the 
+datamodel, the p-value is significantly lower than 0.05 which make me to think there are other variables
+ which might impact mpg but missing from our dataset. Short answer the model is effective for this dataset 
+ but can't be genralized for all MechaCar prototypes
