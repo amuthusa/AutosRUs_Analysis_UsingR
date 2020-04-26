@@ -52,3 +52,23 @@ Though Multiple R-squared which is 0.708 which would be a good indicator of futu
 datamodel, the p-value is significantly lower than 0.05 which make me to think there are other variables
  which might impact mpg but missing from our dataset. Short answer the model is effective for this dataset 
  but can't be genralized for all MechaCar prototypes
+
+
+ Suspension Coil Summary:
+
+ Using the Suspension Coil Summary data provided we calculated the summary table, below is the data
+
+  Manufacturing_Lot Mean_PSI Median_PSI Variance_PSI STD_PSI
+  <fct>                <dbl>      <dbl>        <dbl>   <dbl>
+1 Lot1                 1500       1500         0.980   0.990
+2 Lot2                 1500.      1500         7.47    2.73 
+3 Lot3                 1496.      1498.      170.     13.0  
+
+1. The design specifications for the MechaCar suspension coils dictate that the variance of the suspension 
+coils must not exceed 100 pounds per inch. Does the current manufacturing data meet this design 
+specification? Why or why not?
+
+[Answer]: Based on the design specification Lot3 is rejected since it didn't meeet the variance limit of 
+100 pounds per inch, while Lot1 nd Lot2 meets the design specification since the variance is 0.98 and 7.47
+pounds per inch.
+

@@ -2,7 +2,7 @@ mechacar_mpg <- read.csv("MechaCar_mpg.csv", check.names = F, stringsAsFactors =
 names(mechacar_mpg)
 head(mechacar_mpg)
 #create a matrix of variables
-mechacar_matric <- as.matrix(mechacar_mpg[, c("vehicle length", "vehicle weight", "ground clearance", "AWD", "mpg")])
+mechacar_matric <- as.matrix(mechacar_mpg[, c("vehicle length", "vehicle weight", "AWD", "mpg")])
 #correlation of mpg vs vehicle weight
 cor(mechacar_mpg$mpg, mechacar_mpg$"vehicle length")
 cor(mechacar_mpg$mpg, mechacar_mpg$"ground clearance")
@@ -47,6 +47,35 @@ plt + geom_point() + geom_line(aes(y=yval_wgt), color="red")
 
 plt <- ggplot(mechacar_mpg, aes(y=mpg, x=`ground clearance`))
 plt + geom_point() + geom_line(aes(y=yval_gc), color="red")  
+
+
+#Suspension Coil Summary
+suspension_coil = read.csv("Suspension_Coil.csv")
+typeof(suspension_coil$PSI)
+
+psi_summary <- suspension_coil %>% group_by(Manufacturing_Lot) %>% summarise(Mean_PSI= mean(PSI), Median_PSI = median(PSI), Variance_PSI = var(PSI), STD_PSI = sd(PSI))
+psi_summary
+
+plt <- ggplot(psi_summary,aes(x=Manufacturing_Lot, y=Variance_PSI))
+plt + geom_point(size=4) + labs(x="Manufacturing Lot", y="Variance PSI")
+
+#Suspension Coild T-Test
+plt <- ggplot(suspension_coil, aes(x=PSI))
+plt + geom_density()
+
+sample_data <- suspension_coil %>% sample_n(25)
+head(sample_data)
+
+plt <- ggplot(sample_data, aes(x=log10(PSI)))
+plt + geom_density()
+
+
+
+
+
+
+
+
 
 
 
