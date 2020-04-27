@@ -25,4 +25,4 @@
   
   Based on the three models it seems Vehicle Length and Ground Clearance seems to have slope of zero and more releance to mpg.
   
-  For more ananlysis look at the following txt file: [ananlysis text](MechaCarWriteUp.txt)
+  For more ananlysis look at the following txt file: [analysis file](MechaCarWriteUp.txt)
