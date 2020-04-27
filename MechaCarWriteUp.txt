@@ -55,8 +55,15 @@ datamodel, the p-value is significantly lower than 0.05 which make me to think t
 
 
  Suspension Coil Summary:
+ ========================
 
  Using the Suspension Coil Summary data provided we calculated the summary table, below is the data
+Overall manufacturing data:
+
+Mean_PSI Median_PSI Variance_PSI  STD_PSI
+1  1498.78       1500     62.29356 7.892627
+
+Groupby Manufacturing lot:
 
   Manufacturing_Lot Mean_PSI Median_PSI Variance_PSI STD_PSI
   <fct>                <dbl>      <dbl>        <dbl>   <dbl>
@@ -68,11 +75,20 @@ datamodel, the p-value is significantly lower than 0.05 which make me to think t
 coils must not exceed 100 pounds per inch. Does the current manufacturing data meet this design 
 specification? Why or why not?
 
-[Answer]: Based on the design specification Lot3 is rejected since it didn't meeet the variance limit of 
+[Answer]: 
+No group by (overall manufacturing data):
+Based on the design specification the variance of suspense coil must not exceed 100 and the current 
+manufacturing suspension coil's variance is 62 which is well below the 100 mark so its accepted. 
+Further drilling down based on Manufacturing lot as below
+
+
+Group by Manufacturing Lot: 
+Based on the design specification Lot3 is rejected since it didn't meeet the variance limit of 
 100 pounds per inch, while Lot1 nd Lot2 meets the design specification since the variance is 0.98 and 7.47
 pounds per inch.
 
-Suspension Coil T-Test
+Suspension Coil T-Test:
+=======================
 
 Based One Sample t-test collected sample data which meets following criteria
 
@@ -112,7 +128,7 @@ mean of x
  3.175751 
 
 Using Two Sample t-test ( Welch's Two Sample t-test) with the same sample data, results holds true where suspension coil's PSI is
-statistically different from the men population
+statistically different from the mean population
 
 data:  log10(sample_data$PSI) and log10(sample_data1$PSI)
 t = 0.14136, df = 194.01, p-value = 0.8877
@@ -124,15 +140,25 @@ mean of x mean of y
  3.175799  3.175751 
 
 Design your own Study:
+======================
 
-Inorder to figure out MechaCar outperforms the competitors following would be the following metric,
-I would collected
+Inorder to figure out MechaCar prototype outperforms the competitors I would be collecting the 
+following metric
 
-1. How many number of MechaCar's sold compared to the competitors
-    a. classify them based on cost
-    b. classify them based on fuel efficiency
-    c. classify them based on maintenance cost
-    b. classify them based on class (economy, compact, standard, luxury)
-2. How many of costumers hold more than one MechaCar (to figure out happy customers who would become 
-   brand ambasadar or marketing mouth)
+1. Metric:
+   a. Cost
+   b. Transmission Type (Manual/Automatic/Continuous Variable)
+   c. Horse power
+   d. Vehicle class
+2. Question I would ask:
+   a. Based on sections of market (like city/suburban/rural/mountain) what metric drives the sales
+   b. Does cost have an impact on the sales ?
+   c. Does Fuel Cost have any impact of less fuel efficient cars
+2. Null hypothesis:
+    Means of all groups are same
+   Alternate hypothesis:
+    Means of atleast one group is different from other groups
+3. Will use two-way ANOVA to test means of single dependent variable across two indepedent variable
+
+
 

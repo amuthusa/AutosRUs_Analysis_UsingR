@@ -53,8 +53,11 @@ plt + geom_point() + geom_line(aes(y=yval_gc), color="red")
 suspension_coil = read.csv("Suspension_Coil.csv")
 typeof(suspension_coil$PSI)
 
-psi_summary <- suspension_coil %>% group_by(Manufacturing_Lot) %>% summarise(Mean_PSI= mean(PSI), Median_PSI = median(PSI), Variance_PSI = var(PSI), STD_PSI = sd(PSI))
-psi_summary
+psi_summary_nogroupby <- suspension_coil %>% summarise(Mean_PSI= mean(PSI), Median_PSI = median(PSI), Variance_PSI = var(PSI), STD_PSI = sd(PSI))
+psi_summary_nogroupby
+
+psi_summary_groupby <- suspension_coil %>% group_by(Manufacturing_Lot) %>% summarise(Mean_PSI= mean(PSI), Median_PSI = median(PSI), Variance_PSI = var(PSI), STD_PSI = sd(PSI))
+psi_summary_groupby
 
 plt <- ggplot(psi_summary,aes(x=Manufacturing_Lot, y=Variance_PSI))
 plt + geom_point(size=4) + labs(x="Manufacturing Lot", y="Variance PSI")
@@ -69,8 +72,9 @@ head(sample_data)
 plt <- ggplot(sample_data, aes(x=log10(PSI)))
 plt + geom_density()
 
-psi_summary <- sample_data %>% group_by(Manufacturing_Lot) %>% summarise(Variance_PSI = var(PSI))
-psi_summary
+
+psi_summary_groupby <- sample_data %>% group_by(Manufacturing_Lot) %>% summarise(Variance_PSI = var(PSI))
+psi_summary_groupby
 
 sample_data1 <- suspension_coil %>% sample_n(100)
 head(sample_data1)
@@ -81,9 +85,19 @@ psi_summary1
 plt <- ggplot(sample_data1, aes(x=log10(PSI)))
 plt + geom_density()
 
+t.test(log10(sample_data$PSI),mu=mean(log10(suspension_coil$PSI))) #compare sample versus population means
+
 t.test(log10(sample_data1$PSI),mu=mean(log10(suspension_coil$PSI))) #compare sample versus population means
 
+t.test(log10(sample_data$PSI),log10(sample_data1$PSI)) #compare means of two samples
 
+mechacar_mpg_filt <- mechacar_mpg[, c("mpg", "spoiler angle")]
+mechacar_mpg_filt
+summary(aov(mpg ~ `spoiler angle`, data=mechacar_mpg_filt))
+
+mechacar_mpg_filt1 <- mechacar_mpg[, c("mpg", "AWD")]
+mechacar_mpg_filt1
+summary(aov(mpg ~ AWD, data=mechacar_mpg_filt1))
 
 
 
